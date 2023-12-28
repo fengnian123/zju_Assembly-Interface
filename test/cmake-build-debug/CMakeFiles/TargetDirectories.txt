@@ -1,0 +1,4 @@
+D:/study/arch/test/cmake-build-debug/CMakeFiles/test.dir
+D:/study/arch/test/cmake-build-debug/CMakeFiles/opt.dir
+D:/study/arch/test/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/study/arch/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
