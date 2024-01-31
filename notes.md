@@ -1,4 +1,8 @@
+# 汇编与接口笔记
+
 [TOC]
+
+
 
 # 第一章 介绍
 
@@ -709,7 +713,7 @@ Find-
 
 # 第三章、寻址方式
 
-### 3.1 介绍
+## 3.1 介绍
 
 - x86寻址方式：
   - 16-bit modes (real, vm86, protected): default address and operand-size are 16-bit
@@ -736,7 +740,7 @@ Find-
 
 
 
-### 3.2 寄存器寻址
+## 3.2 寄存器寻址
 
 - 寄存器寻址：The most **common** form of data addressing
 
@@ -746,7 +750,7 @@ Find-
 
 
 
-### 3.3 立即数寻址
+## 3.3 立即数寻址
 
 - 立即数寻址：
 
@@ -762,7 +766,7 @@ Find-
 
 
 
-### 3.4 内存寻址
+## 3.4 内存寻址
 
 - 内存寻址：
 
@@ -898,7 +902,7 @@ Find-
 
 
 
-### 3.5 其他
+## 3.5 其他
 
 - **Canonical Addressing and Canonical Form** （规范寻址）：没有用的高位地址不能随便赋值，只能用**符号位**填充
 
@@ -922,7 +926,7 @@ Find-
 
 
 
-### 3.6 **总结**
+## 3.6 **总结**
 
 - **Memory Addressing Mode**：
 
@@ -956,7 +960,7 @@ Find-
 
 
 
-### 3.7 代码寻址
+## 3.7 代码寻址
 
 - 根据跳转的距离分为：
 
@@ -1003,7 +1007,7 @@ Find-
 
     
 
-### 3.8 栈寻址
+## 3.8 栈寻址
 
 - **push**：栈的基地址`ss`偏移后加上栈顶`ESP`
 
@@ -1037,9 +1041,9 @@ Find-
 
 # 第四章、数据移动指令
 
-### 4–1 MOV 指令
+## 4–1 MOV 指令
 
-#### 4.1.1 指令模式
+### 4.1.1 指令模式
 
 指令模式判断：
 
@@ -1069,7 +1073,7 @@ Find-
 
 
 
-#### 4.1.2 Opcode—1 byte
+### 4.1.2 Opcode—1 byte
 
 基本格式：
 
@@ -1091,7 +1095,7 @@ Find-
 
 
 
-#### 4.1.3 MOD Field—2 bytes
+### 4.1.3 MOD Field—2 bytes
 
 基本格式：
 
@@ -1115,7 +1119,7 @@ Find-
 
 
 
-#### 4.1.4 Scaled-Index—1 byte
+### 4.1.4 Scaled-Index—1 byte
 
 基本格式：
 
@@ -1131,7 +1135,7 @@ Find-
 
 
 
-#### 4.1.5 64位模式下的扩展
+### 4.1.5 64位模式下的扩展
 
 由于寄存器增加，前面一些表示寄存器的位显然不够用，所以加入**REX (registerextension)**
 
@@ -1157,7 +1161,7 @@ Find-
 
 
 
-#### 4.1.6 Legacy Prefixes
+### 4.1.6 Legacy Prefixes
 
 - **Lock Prefix**：互斥锁前缀，使指令执行原子操作
 
@@ -1207,7 +1211,7 @@ Find-
 
 
 
-#### 4.1.7 **Escape Sequence**
+### 4.1.7 **Escape Sequence**
 
 6位的Opcode不够了，因此要进行扩展
 
@@ -1219,7 +1223,7 @@ Find-
 
 
 
-### 4.2 **LOAD**指令
+## 4.2 **LOAD**指令
 
 两类：
 
@@ -1253,7 +1257,7 @@ Find-
 
 
 
-### 4.3 STRING DATA TRANSFERS
+## 4.3 STRING DATA TRANSFERS
 
 包括：
 
@@ -1293,7 +1297,7 @@ Find-
 
 
 
-#### 4.3.1 **LODS**
+### 4.3.1 **LODS**
 
 - 作用： transfers a byte, word or doublewordfrom the source location **DS:SI** to **AL, AX or EAX**
 
@@ -1313,7 +1317,7 @@ Find-
 
   
 
-#### 4.3.2 **STOS** 
+### 4.3.2 **STOS** 
 
 - 作用：store **AL, AX, or EAX** to the destination location ES:DI
 
@@ -1331,7 +1335,7 @@ Find-
 
 
 
-#### 4.3.3 **MOVS** 
+### 4.3.3 **MOVS** 
 
 - 唯一内存到内存的传输
 
@@ -1349,7 +1353,7 @@ Find-
 
 
 
-#### 4.3.4 **INS**/**OUTS** 
+### 4.3.4 **INS**/**OUTS** 
 
 **INS**：
 
@@ -1383,9 +1387,9 @@ Find-
 
 
 
-### 4.4 其他数据传输指令
+## 4.4 其他数据传输指令
 
-#### 4.4.1 **XCHG**
+### 4.4.1 **XCHG**
 
 - 交换两个寄存器/一个**通用**寄存器和内存的值（不能是段寄存器和内存交换）
 
@@ -1393,7 +1397,7 @@ Find-
 
   <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231227004248956.png" alt="image-20231227004248956" style="zoom:50%;" /> 
 
-#### 4.4.2 **LAHF and SAHF** 
+### 4.4.2 **LAHF and SAHF** 
 
 - LAHF instruction transfers the **lower 8 bits** of the **EFLAGS** register into the **AH** register.
 
@@ -1409,7 +1413,7 @@ Find-
 
 
 
-#### 4.4.3 **XLAT**
+### 4.4.3 **XLAT**
 
 -  implicit operands (**AL, BX**)
 
@@ -1421,7 +1425,7 @@ Find-
 
 
 
-#### 4.4.4 **Input Ports and Output Ports**
+### 4.4.4 **Input Ports and Output Ports**
 
 - 内存→外设：主要有三部分流程
 
@@ -1468,7 +1472,7 @@ Find-
 
 
 
-#### 4.4.5 新mov指令
+### 4.4.5 新mov指令
 
  在传数据时**不用**要求两个寄存器长度一定一样（小寄存器/或内存地址写入宽寄存器）
 
@@ -1509,7 +1513,7 @@ Find-
 
 
 
-#### 4.4.6 条件移动指令
+### 4.4.6 条件移动指令
 
 - 满足条件才能移动数据 ，如下图：
 
@@ -1535,7 +1539,7 @@ Find-
 
   <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231227211503199.png" alt="image-20231227211503199" style="zoom:50%;" /> 
 
-### 4.5 **ASSEMBLER DETAIL**
+## 4.5 **ASSEMBLER DETAIL**
 
 - 有很多伪指令
 
@@ -1617,7 +1621,7 @@ Find-
   - 可以把宏全部放到一个单独的INCLUDE文件
   - 调用时直接用**INCLUDE + filename**
 
-### 4.6 **Memory Organization** （定义段）
+## 4.6 **Memory Organization** （定义段）
 
 - 两种方式：
 
@@ -1664,9 +1668,9 @@ Find-
 
 
 
-## 第五章、算术和逻辑指令
+# 第五章、算术和逻辑指令
 
-### **5.1** 加减及比较 
+## **5.1** 加减及比较 
 
 - **ADD**：两操作数
 
@@ -1694,7 +1698,7 @@ Find-
 
     =>**ADCX** and **ADOX**可以并行
 
-    **EX：**使用**xor**将两条进位链都清零；使用**dec**以及**lea**不影响**CF flag**
+    **EX：**使用**xor**将两条进位链都清零；使用**dec**以及**lea**不影响**CF flag**（但是会改**OF flag**，所以还是错的）
 
     <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231228235124312.png" alt="image-20231228235124312" style="zoom:50%;" /> 
 
@@ -1728,6 +1732,1563 @@ Find-
 
   可以用来做**optimistic locking**（高并发、低数据冲突情况）
 
-  **EX：**更新版本号的同时保存旧版本号，比较保存的旧版本号与之前加载的版本号，相同说明正确（没有并发的操作在这个过程中改变版本号），不同则要retry
+  **EX：**更新版本号的同时保存旧版本号，比较保存的旧版本号与之前加载的版本号，相同说明正确（没有并发的操作在这个过程中改变版本号），不同则要retry（要进行回退，这些额外的操作会降低性能，所以乐观锁适用于冲突较少的情况）
 
   <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229000120931.png" alt="image-20231229000120931" style="zoom:50%;" /> 
+  
+- **SUB**：基本与加法相同
+
+  **DEC**：递减1（同样**CF** flag不变，所以后面如果有跳转指令可能不止依赖于DEC）
+
+  **EX：**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229214507096.png" alt="image-20231229214507096" style="zoom:50%;" /> 
+
+- comparison instruction (**CMP**)：a **subtraction** that changes only the **flag** bits.
+
+  - 操作数为寄存器或内存都可以
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229215136970.png" alt="image-20231229215136970" style="zoom:50%;" /> 
+
+- **CMPXCHG**：比较后交换
+
+  - implicit operand：CMPXCHG CX,DX (**AL/AX/EAX**)
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229220212413.png" alt="image-20231229220212413" style="zoom:50%;" /> 
+
+  - 扩展到64位及更多：**CMPXCHG8B/CMPXCHG16B**
+
+    需要**implicit operand**
+
+    64位：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229221522843.png" alt="image-20231229221522843" style="zoom:50%;" /> 
+
+    128位：换成**RDX:RAX**，**RCX:RBX**
+
+## 5.2 乘除法
+
+### 5.2.1 乘法
+
+ unsigned integer (**MUL**)：
+
+- implicit operand放在**A**系列寄存器中（结果长度要是乘数的2倍）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229222709233.png" alt="image-20231229222709233" style="zoom:50%;" /> 
+
+- 无符号数乘法**不能**直接乘**立即数**（unless the two or three-operand form of IMUL multiplication）
+
+- 8位：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229223235974.png" alt="image-20231229223235974" style="zoom:50%;" /> 
+
+- **16-Bit Multiplication**：
+
+  - **AX**做被乘数
+  - 结果放在DX–AX（拼起来，DX放高16位；AX放低16位）
+
+- **32-Bit Multiplication**：
+
+  - **EAX**做被乘数
+  - 结果放在EDX–EAX（拼起来，EDX放高32位；EAX放低32位）
+
+- **64-Bit Multiplication**：
+
+  - **RAX**做被乘数
+  - 结果放在RDX–RAX（拼起来，RDX放高32位；RAX放低32位）
+
+
+
+ signed integer (**IMUL**)：
+
+- 三种形式：
+
+  - **one-operand** form: 和无符号相同
+
+  - **two-operand** form: 由于要把结果放到目的操作数中，如果有进位就会出现**截断**；可以乘立即数
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229224135206.png" alt="image-20231229224135206" style="zoom:50%;" /> 
+
+  - **three-operand** form: the first source operand is multiplied by the second source operand；同样可能阶段；可以乘立即数
+
+     <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229224435094.png" alt="image-20231229224435094" style="zoom:50%;" /> 
+
+
+
+- 有符号乘法和无符号乘法的区别：
+
+  **高位扩展**不同
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229224724711.png" alt="image-20231229224724711" style="zoom:50%;" /> 
+
+  **无符号**乘法对标志位的改变：（高位全0则CF和OF都置0；否则都置1）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229224949852.png" alt="image-20231229224949852" style="zoom:50%;" /> 
+
+  **有符号**乘法对标志位的改变：（高位和低位的符号位相同则CF和OF都置0；否则都置1）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229225235592.png" alt="image-20231229225235592" style="zoom:50%;" /> 
+
+  =>根据CF和OF可以判断多操作数相乘时是否**截断**
+
+
+
+### 5.2.2 除法
+
+- There is no immediate division instruction available to any microprocessor（不能有立即数）
+
+- **8-Bit Division**：
+
+  - 被除数放在AX中（implicit operand）
+
+  - AL := quotient, AH := remainder
+
+    为什么反过来放？
+
+    =>对余数补0继续除比较方便（AL置0就可以）
+
+  - 余数的符号：保持与被除数相同
+
+  **EX：**注意要先0扩展
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229231452594.png" alt="image-20231229231452594" style="zoom:50%;" /> 
+
+- 其余16/32/64位类似
+
+- 符号扩展方法：
+
+  - **CBW/CWDE/CDQE**是将**A**系列寄存器带符号扩展一级
+
+  - **CWD/CDQ/CQO**将**A**系列寄存器中的符号位复制到**D**系列寄存器的所有位（除法被除数用的）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229232123290.png" alt="image-20231229232123290" style="zoom:50%;" /> 
+
+  - **MOVSX/MOVSXD**： 符号扩展将源操作数（寄存器或内存）复制到目标操作数（寄存器）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231229232438040.png" alt="image-20231229232438040" style="zoom:50%;" /> 
+
+  - **MOVZX** ：0扩展
+  
+- **The Remainder**：三种舍入方式：
+
+  - dropped to truncate the quotient（直接截断）
+  - round the quotient（四舍五入）
+  - fractional remainder（保存成小数）
+
+  **EX：**余数×2和除数比较进行四舍五入
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230152623307.png" alt="image-20231230152623307" style="zoom:50%;" /> 
+
+  对余数补0继续除得到分数结果
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230152804514.png" alt="image-20231230152804514" style="zoom:50%;" /> 
+
+
+
+## 5.3 **BCD and ASCII** 
+
+在64位模式下**无效**。在64位中使用这些指令将生成一个无效操作码（**#UD**）异常
+
+### 5.3.1 **BCD**
+
+- DAA (**decimal adjust after addition**) instruction follows BCD addition
+
+  DAS (**decimal adjust after subtraction**) follows BCD subtraction
+
+  在加减操作后把结果调整为BCD码格式：
+
+  在出现不是0~9或者AF = 1时将结果+6
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230153324249.png" alt="image-20231230153324249" style="zoom:50%;" /> 
+
+
+
+### 5.3.2 **ASCII** 
+
+Four instructions in ASCII arithmetic operations（将寄存器**AX**作为源和目标寄存器）:
+
+– AAA (**ASCII adjust after addition**)
+
+– AAS (**ASCII adjust after subtraction**)
+
+– AAM (**ASCII adjust after multiplication**)
+
+– AAD (**ASCII adjust before division**)
+
+- AAA instruction adjusts the value in **AL** register to an **unpacked BCD** result
+
+  **EX：**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230153822754.png" alt="image-20231230153822754" style="zoom:50%;" /> 
+
+- 其他类似
+
+
+
+## 5.4 逻辑指令
+
+- 所有的逻辑指令都会影响**标志**位，除了**NOT**
+
+  怎么影响:
+
+  – clear the **OF and CF** flags
+
+  – change the SF, ZF, and PF flags to reflect the result
+
+  – the state of the AF flag is undefined
+
+### 5.4.1 **Test and Bit Test Instructions** 
+
+- **TEST**：执行**与**操作，但不返回结果，只改变**标志**位（类似CMP）
+
+  **EX：**判断最高位和最低位是否为1
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230154329203.png" alt="image-20231230154329203" style="zoom:50%;" /> 
+
+- **TEST same,same**用于确定有符号的数字是否大于零（比CMP编码更短，没有后面的立即数）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230154517182.png" alt="image-20231230154517182" style="zoom:50%;" /> 
+
+- **Bit Test**用于置位：
+
+  BTC：取补
+
+  BTR：清除
+
+  BTS：置位
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230154706975.png" alt="image-20231230154706975" style="zoom:50%;" /> 
+
+  
+
+### 5.4.2 **NOT and NEG**
+
+- NOT和NEG（取补码）可以使用除**段寄存器**寻址以外的任何寻址模式
+
+- NEG对标志位的影响：
+
+  – if the operand = 0, then CF = 0, otherwise CF = 1.
+
+  – the OF, SF, ZF, AF, and PF flags are set according to the result
+
+  **EX：**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155114931.png" alt="image-20231230155114931" style="zoom:50%;" /> 
+
+
+
+## 5.5 **Shift and Rotate** 
+
+格式：
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155211564.png" alt="image-20231230155211564" style="zoom:50%;" /> 
+
+- 算术左移和逻辑左移没有区别：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155325903.png" alt="image-20231230155325903" style="zoom:50%;" /> 
+
+- 算术右移和逻辑右移：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155400847.png" alt="image-20231230155400847" style="zoom:50%;" /> 
+
+- count可以放在**CL**寄存器中
+
+- **SRA**和**IDIV**的舍入是不一致的
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155545656.png" alt="image-20231230155545656" style="zoom:50%;" /> 
+
+  =>为了解决，让**SRA**向**IDIV**看齐
+
+  **EX：**提前补偿，如果被除数是负的，那么被除数+7（如果有余数说明原来被除数后三位不是全0，+7后会进位使商+1）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155641911.png" alt="image-20231230155641911" style="zoom:50%;" /> 
+
+
+
+- **Double-Precision Shifts**：移动时source寄存器不会变
+
+  格式：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155912099.png" alt="image-20231230155912099" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230155949890.png" alt="image-20231230155949890" style="zoom:50%;" /> 
+
+  **EX：**注意reg2在高位
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230160141330.png" alt="image-20231230160141330" style="zoom:50%;" /> 
+
+
+
+- **Rotate**：循环移位
+
+  格式：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230160245775.png" alt="image-20231230160245775" style="zoom:50%;" /> 
+
+  - O表示不会将CF移进来（会移出去）；C表示会将CF移进来，如下图：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230160440706.png" alt="image-20231230160440706" style="zoom:50%;" /> 
+
+  **EX：**低位使用**RCR**因为需要高位移到CF的值
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231230160556419.png" alt="image-20231230160556419" style="zoom:50%;" /> 
+
+
+
+## 5.6 **Bit Scan Instructions**
+
+- **BSF** (bit scan forward) ：从**低位到高位**扫描寄存器/内存，将1的位置放到目标寄存器（必须是**寄存器**）中
+
+- **BSR** (bit scan reverse)： 从**高位到低位**扫描寄存器/内存，将1的位置放到目标寄存器（必须是**寄存器**）中
+
+  扫描到1的话**ZF = 0**
+
+  没有扫描到1的话**ZF = 1**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231175151890.png" alt="image-20231231175151890" style="zoom:50%;" /> 
+
+  - 没有扫描到1的话目标寄存器放入的数未定义
+
+  解决方式=>扩展指令：
+
+  **TZCNT** (trailing zero count) ：计数末尾连续零的数量
+
+  **LZCNT** (leading zero count) ：计数开头连续零的数量
+
+  还要置**CF**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231175418941.png" alt="image-20231231175418941" style="zoom:50%;" /> 
+
+
+
+## 5.7 **STRING COMPARISONS** 
+
+- **SCAS**
+
+  - 比较隐含寄存器（**AL, AX, or EAX**）和内存中的（**ES:(E)DI**）寻址内容
+  -  direction flag (**D**)选择**ES:(E)DI**的方向
+  - 要加**后缀**（SCASB, SCASW, SCASD ）表示比较的大小
+  - 可以用条件重复前缀**REPE**（相等时继续比较）或REPNE（不相等时继续比较）
+
+  **EX：**比较一款内存有没有清0
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231180759563.png" alt="image-20231231180759563" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231181206200.png" alt="image-20231231181206200" style="zoom: 50%;" /> 
+
+- **CMPS**：
+
+  将**SI/ESI**寻址的数据段存储器位置的内容与**DI/EDI**寻址的额外段存储器的内容进行比较
+
+  其他与SCAS类似
+
+  
+
+
+
+# 第六章、控制指令
+
+（控制指令主要读Flag但不改写）
+
+## 6.1 无条件跳转
+
+unconditional ：
+
+1. short jump：+127 and –128 bytes
+
+2. near jump：±32K bytes
+
+3. far jump：： any memory 
+
+对应的编码如下：
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231181720309.png" alt="image-20231231181720309" style="zoom:50%;" /> 
+
+- **short jump和near jump**的offset是相对于**当前PC**的
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231182037889.png" alt="image-20231231182037889" style="zoom:50%;" /> <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231183736779.png" alt="image-20231231183736779" style="zoom:50%;" /> 
+
+- **near jump**编译出来后面用一个**R**表示未确定（实际跳转的数量要到link之后才能确定）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231183304507.png" alt="image-20231231183304507" style="zoom:50%;" /> 
+
+- **far jump**后面是跳转的地方（段的基地址需要**2次**重定位，在link后还是不确定）
+
+  Two ways to obtain a **far** jump
+
+  – uses a FAR PTR directive, e.g., JMP **FAR** PTR START.
+
+  – defines a far label, e.g., **EXTRN** START:FAR.；START::（**两个冒号**）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231185215891.png" alt="image-20231231185215891" style="zoom:50%;" /> 
+
+- **Jumps with Register Operands**：使用一个16位或32位的寄存器作为一个操作数
+
+  - 直接跳到寄存器内容的地址
+  - 将寄存器写到IP（当前PC）中
+
+- **Indirect Jumps Using an Index**：跳转指令也可以使用[]寻址形式（例如，JMP TABLE[SI])来直接跳转到TABLE + SI的地方
+
+
+
+## 6.2 条件跳转
+
+Conditional jump instructions test flag bits:
+
+– **sign (S), zero (Z), carry (C)**
+
+– **parity (P), overflow (O)** 
+
+**EX：** **JC** will jump if the carry bit is set
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231190954560.png" alt="image-20231231190954560" style="zoom:50%;" /> 
+
+- 有符号比较：
+
+  **JG, JL, JGE, JLE, JE, JNE** instructions.
+
+- 无符号比较：
+
+  **JA, JB, JAE, JBE, JE,  JNE**（above and below）
+
+总结：(注意最下三条指令的条件的C系列寄存器为0,也就是计算器是否为0)
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231231191435574.png" alt="image-20231231191435574" style="zoom:50%;" /> 
+
+
+
+## 6.3 条件设置指令
+
+**SETcc**指根据EFLAGS状态位进行条件判断
+
+- 如果满足指定的条件（cc），则将**指定的8位内存位置或寄存器**的值设置为1。
+- 如果标志不满足指定的条件，则SETcc将内存位置或寄存器清零为0。
+- 用途：不立即跳转，做一些判断后再跳转（保存此时的判断，后面再用）/设置函数的返回值
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113211926835.png" alt="image-20240113211926835" style="zoom:50%;" /> 
+
+情况由条件跳转得出
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113211616298.png" alt="image-20240113211616298" style="zoom:50%;" /> 
+
+
+
+- **LOOP**：循环（使用**RCX/ECX/CX**作为计数器）
+
+  - LOOP指令相当于以下两条指令的组合：
+
+    - DEC RCX/ECX/CX：将**计数器减1**（老师说这里只是近似，因为DEC不改变FLAG所以不对？但是DEC不是只不影响CF吗？所以没什么问题？
+
+      ----------几分钟后老师说刚才讲错了）
+
+    - JNZ label：检查计数器是否不等于0，如果不等于0，则进行近跳转到指定的label，否则跳出循环
+
+  - 可以加后缀：LOOPE  = LOOPZ/ LOOPNE =  LOOPNZ（判断**Z** flag）
+
+
+
+- **高级语言**loop转换：
+
+  - **Do-while**-loop：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113215838600.png" alt="image-20240113215838600" style="zoom:50%;" /> 
+
+  - **While**-loop ：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113215941661.png" alt="image-20240113215941661" style="zoom:50%;" /> 
+
+  - **For**-loop in ：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113220116304.png" alt="image-20240113220116304" style="zoom:50%;" /> 
+
+## 6.4 控制流伪指令
+
+- .WHILE；–.ENDW； .REPEAT； .UNTIL；.UNTILCXZ；.BREAK；.CONTINUE；.IF；.ENDIF；.ELSE；.ELSEIF（前面有个`.`）
+
+- **Operators for Conditional Control Flow**
+
+   <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113220543549.png" alt="image-20240113220543549" style="zoom:50%;" /> 
+
+  EX :把数字的ASCLL码转成16进制，但是A~F和数字之间有一些其他符号的间隔，所以减7后再减'0'
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113220921351.png" alt="image-20240113220921351" style="zoom:50%;" /> 
+
+- **WHILE Loops**：
+
+  .WHILE； .ENDW ；.BREAK ； .CONTINUE
+
+- **REPEAT-UNTIL Loops** ：
+
+  .REPEAT；.UNTIL（+ 条件）；.UNTILCXZ（检查CX来判断）
+
+
+
+## 6.5 **PROCEDURES**
+
+### 6.5.1 PROC
+
+- **PROC**开始，**ENDP**结束。
+  - 每个指令都包含过程的名称。
+- 指定了过程的类型：NEAR或FAR。
+- **RET**退出（必须要有）
+- PROC + **USES** + register可以自动保存和恢复register（类似临时变量）
+
+EX：near return和far return的机器码不同（far return需要去堆栈读段的数据）
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113222323285.png" alt="image-20240113222323285" style="zoom:50%;" /> 
+
+### 6.5.2 CALL
+
+**CALL**将后面的返回地址（可以是寄存器中的值或偏移量）推入栈
+
+**RET**从栈中弹出返回地址
+
+缺点：连接到过程并返回过程所需的**时间**
+
+四种不同类型的call：
+
+- **Near call** (intrasegment call): 在当前代码段内调用过程。
+
+  两种方式
+
+  - a relative offset (加相对当前**PC**的偏移量).
+
+  - absolute offset in the code segment (加相对于当前**段**的偏移量）
+
+  EX：注意要push返回地址
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113223453261.png" alt="image-20240113223453261" style="zoom:50%;" /> 
+
+-  **Far call** (intersegment call): 调用位于与当前代码段**不同段**中的过程。
+
+  一个5字节的指令，**opcode + IP + CS**
+
+  - 第2和第3字节为IP的新内容
+  - 第4和第5字节为CS的新内容（ 在跳转到指定的地址之前，将IP和CS的内容都压入栈中）
+
+  EX：注意返回地址push的是段地址+pc
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113223731300.png" alt="image-20240113223731300" style="zoom:50%;" /> 
+
+- **Inter-privilege-level far call**：对当前执行程序的**特权级别不同**的段中的过程进行远调用。
+
+- **Task switch**：调用位于不同任务中的过程。
+
+- **RET n**：返回时清理栈里面的n个字节
+
+  EX：很清晰
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240113224245563.png" alt="image-20240113224245563" style="zoom:50%;" /> 
+  
+  
+
+-  调用**不同权限**的内容（ inter-privilege-level far call）
+
+  三种方法：（一定是**far call**）
+
+  - 定义代码段(描述符)的时候标记**conforming code segments**来共享库
+
+  - **Gates**：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115110729068.png" alt="image-20240115110729068" style="zoom:50%;" /> 
+
+  - **syscall**
+
+
+
+### 6.5.3 **INTERRUPTS** 
+
+- service procedure (**ISP**)：中断处理程序
+
+- 中断事件发生→产生**interrupt vector**→索引interrupt vector table（实模式）or interrupt descriptor table （保护模式）
+
+- 外部中断（I/O设备发出）：
+
+  分为可屏蔽中断和不可屏蔽：
+
+  - 可屏蔽中断通过**INTR**引脚触发，当**FLAGS.IF=1**时才触发。FLAGS.IF为0将屏蔽。
+  - 不可屏蔽中断总会触发。
+
+  开中断指令： set interrupt flag instruction (**STI**) →enables  INTR
+
+  关中断指令： clear interrupt flag instruction (**CLI)**→disable INTR
+
+- 内部异常
+
+  三种异常：
+
+  - Program-Error ：除0
+  - Software-Generated：越界检测
+  - Machine-Check ：内部芯片‘
+
+  另一种分类：
+
+  - Precise exception：精确知道异常位置，要返回重新正确执行
+  - Imprecise exceptions：异步、无法重启修复
+
+  功能分类：
+
+  - Faults：precise exceptions，返回异常指令
+  - Traps：precise exceptions，返回下一条指令
+  - Abort：Imprecise exception
+
+- 介绍一个有趣的异常**Double Fault**：
+
+  就是异常处理程序再抛出异常，但是有条件：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115113450924.png" alt="image-20240115113450924" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115113136797.png" alt="image-20240115113136797" style="zoom:50%;" /> 
+
+  如果Double Fault处理时在出现异常→triple fault→系统挂了
+
+- **Error Code**：报告一些异常的错误和状态信息。
+
+  - 在控制转移到异常处理程序期间，异常机制将Error Code压入堆栈中。
+  - 两种格式：
+    - selector format：用于报告错误的异常。
+    - page-fault format：用于页面故障。
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115113819978.png" alt="image-20240115113819978" style="zoom:50%;" /> 
+
+- 中断有优先级
+
+- **Real-Mode**的中断：
+
+  interrupt vector table (IVT)：基地址是0（初始化时就建立好）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115114159380.png" alt="image-20240115114159380" style="zoom:50%;" /> 
+
+  流程：
+
+  - FLAGS压栈
+  - FLAGS.IF 置0关闭中断
+  -  CS and IP 压栈stack（返回地址）
+  - 在中断向量表找对应ISP
+  - 进入中断向量程序（通过CS:IP in the IDT）
+  - 返回： **IRET**（far return；入栈的FLAG会恢复）/ 保护模式用**IRETD**
+
+
+
+- **Interrupt Instructions**:
+
+  INT N(中断向量号), INT1, INT3 and INTO（overflow）
+
+  - **INT N**：实模式下$N \in 0 \to 255$，每个中断向量**4字节**，所以在中断向量表中的地址是**N×4**
+
+    相当与far call +  pushes the flags onto the stack + 关闭中断
+
+    与far call对比：
+
+    - INT N 2个字节，far call5个字节
+    - EFLAGS
+    - IRET
+
+    **考题**: INT 100 在中断向量表的地址：190H–193H (64H 乘 4)
+
+  - **INT3**：1-byte instruction (**0xCC**)
+
+    **EX：**假设原始指令为0x8345fc01（ADD DWORD PTR[ebp-0x4]，0x1，当在GDB中break个地址（打断点），它将记住这个指令的第一个字节（0x83），并将这个字节更改为（0xcc45fc01）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115121428685.png" alt="image-20240115121428685" style="zoom:50%;" /> 
+
+    程序运行到这个CC会发生异常，将控制器交给GDB来实现断点，之后恢复时要在把CC换成83，同时把返回的地址设为这条指令（这个中断是**trap**）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115121835253.png" alt="image-20240115121835253" style="zoom:50%;" /> 
+
+    **为什么要用INT3（单字节） 而不是 INT 3（双字节）**：如果第二个字节有label，那么你打断点的时候改了这个地方，如果程序调转到这里就会出错
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115122118098.png" alt="image-20240115122118098" style="zoom:50%;" /> 
+
+  - **INTO**：主动测试overflow
+
+    -If O = 1 an overflow trap is generated via vector type number **4**
+
+    – If O = 0, INTO performs no operation
+
+## 6.6 其他控制指令
+
+- 控制**Carry Flag**：
+
+  STC (set carry), CLC (clear carry), and CMC(complement carry)
+
+- **HLT**：主动停机
+
+  恢复运行方式：
+
+  – an enabled interrupt (NMI and SMI)
+
+  – a debug exception
+
+  – a hardware reset (BINIT#, INIT# or RESET# signal) 
+
+- **NOP**：空操作
+
+  **Multi-byte NOP**：用来对齐
+
+- **LOCK Prefix**
+
+  要求必须是写指令（目的操作数是内存）：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115123218612.png" alt="image-20240115123218612" style="zoom:50%;" /> 
+
+  LOCK不正确的地方会产生 undefined opcode exception (#UD)，三种情况：
+
+  - LOCK + 非算术或逻辑指令
+  - 目的操作数不是内存
+  - 源操作数是内存（想想为什么）
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115123625651.png" alt="image-20240115123625651" style="zoom:50%;" /> 
+
+- **BOUND**：检测索引是否在内存中
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115123829741.png" alt="image-20240115123829741" style="zoom: 50%;" /> 
+
+  EX:
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115124443335.png" alt="image-20240115124443335" style="zoom:50%;" /> 
+
+- **ENTER and LEAVE**
+
+   **stack frame**：嵌套调用时每个函数开辟一个stack frame；运行时产生，内容包括：
+
+  – Argument parameters
+
+  – Return address
+
+  – Local variables
+
+  – Saved copies of registers modified by the called procedures (the *callee*) that need restoration
+
+  EX：ENTER代替蓝色部分，LEAVE代替黄色部分
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115125051362.png" alt="image-20240115125051362" style="zoom:50%;" /> 
+
+  ENTER语法：<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115125225052.png" alt="image-20240115125225052" style="zoom:50%;" /> 
+
+   nesting level ：确定在调整堆栈指针之前从前一帧**复制到新堆栈帧的堆栈帧指针的数量**，这允许从被调用的函数访问多个父帧
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115125420284.png" alt="image-20240115125420284" style="zoom:50%;" /> 
+
+ 
+
+# 第七章 、向量化
+
+- **Promises of Vectorization**：speedup与vector width.成正比；Serial portions of code 和 memory bandwidth会有限制
+
+- **vs Parallelism**：指令级并行；单线程
+
+- **Lane and Slot**：一个寄存器中的多条并行通道
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115135901900.png" alt="image-20240115135901900" style="zoom:50%;" /> 
+
+- **Vectorization Factor**：向量的最大的元素数量
+
+- **Stride**：向量的元素间的跨度
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115140242678.png" alt="image-20240115140242678" style="zoom:50%;" /> 
+
+- **SIMD**方法：
+
+  – a vectorizing compiler（编译器自动）
+
+  - SLP-based vectorization (SLP)：非循环，挖掘同构指令
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115140759063.png" alt="image-20240115140759063" style="zoom:50%;" /> 
+
+  - Loop-based vectorization (LV)：循环展开
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115140821125.png" alt="image-20240115140821125" style="zoom:50%;" /> 
+
+  EX：二者相结合
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115141005408.png" alt="image-20240115141005408" style="zoom:50%;" /> 
+
+  - 主要问题：编译器不知道数据依赖的具体信息
+
+    解决方式：添加伪指令告诉编译器没有数据依赖、三元运算符、适合向量化的数据结构
+
+  - 优点：简单地实现向量化、代码可移植、没有依赖性
+
+  - 要求：
+
+    - 知道循环计数（处理尾巴）
+    - 不要分支
+    - 减少数据依赖
+    - Non-unit stride access会阻碍向量化
+    - 只能做内层循环
+    - 调用I/O不容易向量化（内联函数可以）
+
+  - **Auto-vectorization Fails**怎么办：
+
+    -  compiler directive
+
+      EX：K≥0时可以向量化
+
+      <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115142850156.png" alt="image-20240115142850156" style="zoom:50%;" /> 
+
+      How to tell the compiler that k ≥ 0 ？
+
+      加上 **\#pragma ivdep**
+
+      <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115143013843.png" alt="image-20240115143013843" style="zoom:50%;" /> 
+
+    - **Pointer Aliasing**：传进来的指针之间可能有数据依赖
+
+      <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115145139318.png" alt="image-20240115145139318" style="zoom:50%;" /> 
+
+      可以在指针前加 “restrict” 告诉编译器做向量化
+
+    - **Data Alignment**：使编译器需要的判断减少
+
+  – SIMD intrinsics（向量化指令）
+
+  - 原则：编译器自动替换汇编指令；隐藏汇编指令但一对一映射；本质上在写汇编
+
+  - 优点：使用简单；发挥全部性能
+
+  - 缺点：很长，太底层；要针对不同处理器
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115150501495.png" alt="image-20240115150501495" style="zoom:50%;" /> 
+
+  - 格式：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115150834827.png" alt="image-20240115150834827" style="zoom:50%;" /> 
+
+  - **Permute instructions**：重排向量元素
+
+    根据mask排序（注意小端的排序，可以重复一个部分，高位和低位分别重排）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115152117781.png" alt="image-20240115152117781" style="zoom:50%;" /> 
+
+  - **Shuffle intrinsics**：混合重排两个向量到一个向量
+
+    向量的lane只能取一次
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115152843651.png" alt="image-20240115152843651" style="zoom:50%;" /> 
+
+  - **Pack and unpack instructions**：
+
+    从后缀lo/hi选择从高/低位开始依次重排两个向量
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115153052865.png" alt="image-20240115153052865" style="zoom: 50%;" /> 
+
+  - **AVX** instructions are defined as **in-lane**：把256位的操作分成128位来做
+
+    注意比如lo是将两个128位部分的低位进行unpack
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115154938627.png" alt="image-20240115154938627" style="zoom:50%;" /> 
+
+  **EX：**矩阵转置
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115161056630.png" alt="image-20240115161056630" style="zoom:50%;" /> 
+
+  - **SVE**：可伸缩向量化指令（长度可以不固定）=> 向量长度无关编程
+
+    predicate register：可以开放和关闭lane
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115161812477.png" alt="image-20240115161812477" style="zoom:50%;" /> 
+
+  – vector library (库)
+
+  – assembly language
+
+- 向量化的先决条件：
+
+  - 同构指令(Feasibility)
+  - 没有数据依赖 (Validity/Correctness)
+  - 数据对齐 (Efficiency)
+
+- 向量化的挑战
+
+  - Conditional Statements
+  - Data Dependences
+  - Pointer Aliasing
+  - Data Alignment
+  - Non-unit Strides
+  - Profitability Analysis
+
+- **Data Dependence Analysis**
+
+  statement S依赖于statement T（T在S之前）如果发生：
+
+  - 访问同一个目标
+
+  - 至少有一个在写
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115164107851.png" alt="image-20240115164107851" style="zoom:50%;" /> 
+
+  三种依赖：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115164228013.png" alt="image-20240115164228013" style="zoom:50%;" /> 
+
+  四种依赖情况：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115165124670.png" alt="image-20240115165124670" style="zoom:50%;" /> 
+
+  - **Loop-independent Dependence**：依赖在循环之中，去掉循环还是依赖
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115165528060.png" alt="image-20240115165528060" style="zoom:50%;" /> 
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115165547556.png" alt="image-20240115165547556" style="zoom:50%;" /> 
+
+  - **Loop-carried Dependence**
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115165658333.png" alt="image-20240115165658333" style="zoom:50%;" /> 
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115165724438.png" alt="image-20240115165724438" style="zoom:50%;" /> 
+
+  EX:
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115165945268.png" alt="image-20240115165945268" style="zoom:50%;" /> 
+
+  - 图里有环可能不能向量化；没有环可能可以做向量化
+
+- 数据依赖测试：
+
+  - 依次测试每个维度的下标是否有依赖，如果有没有依赖的维度就说明可以向量化
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115171630627.png" alt="image-20240115171630627" style="zoom:50%;" /> 
+
+  - 测试的结果：No dependence；Dependence；Not sure（a dependence test exact if it only reports 
+
+    answers 1 or 2. Otherwise, it is inexact.
+
+  - 测试方法：
+
+    1. △测试（exact test）：分别假设 a[i+1] 和 a[i] 是源，用目的加上△等于源算出△，如果△可能出现说明有对应的依赖
+
+       <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115172348028.png" alt="image-20240115172348028" style="zoom:50%;" /> 
+
+       <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115172544057.png" alt="image-20240115172544057" style="zoom:50%;" /> 
+
+       多维失效（方程数不够产生Diophantine equation）
+
+    2. **GCD Test**（ inexact test,可以判断一些一定有数据依赖的情况）：
+
+       Diophantine equation `a1×i1 + a2×i2 +...+ an ×in = c`有整数解等价于gcd(a1 ,a2 ,...,an ) 整除 c
+
+       <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115173140896.png" alt="image-20240115173140896" style="zoom:50%;" /> 
+
+       <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115173309533.png" alt="image-20240115173309533" style="zoom:50%;" /> 
+
+    3. **Banerjee Test**（ inexact test,可以判断出可能有依赖） :
+
+       就是相减算最大值和最小值，如果范围中有0说明可能有依赖
+
+       <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115173531793.png" alt="image-20240115173531793" style="zoom:50%;" /> 
+
+- **向量化代码变换**（不考且没时间写了）
+
+
+
+# 第八章 8086/8088硬件技术规范
+
+## 8.1 **PIN-OUTS AND THE PIN FUNCTIONS** 
+
+### 8.1.1 **Pin-Out** 
+
+- 8086：16-bit microprocessor ；16-bit data bus（AD0 –AD15）
+
+  Minimum Mode
+
+  – The **simplest and least** **expensive** mode.
+
+  – 只有一个CPU作为主CPU，其他都是外部设备
+
+  Maximum Mode:
+
+  – Allows the system to use an **external coprocessor** such as 8087 (floating-point coprocessor) .
+
+  – Some of the control signals must be **externally generated** (通过总结交互)
+
+  如下所示：
+
+  - VCC (+5 V的电压)
+  - GND(两头接地：防止引线过长；分担电流强度；分开模拟信号和数字信号，否则数字信号会破坏模拟信号)
+  - 引脚33置1表示最小模式（影响31\~24，变成粉色的控制信号）；置1表示最大模式（31\~24是内部状态信号）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115181853557.png" alt="image-20240115181853557" style="zoom:50%;" /> 
+
+  8086 **address/data bus** lines are **time** multiplexed address and data bus lines（数据和地址的时钟不同）
+
+  - **ALE**置1：内存地址或I/O端口号（复用的）
+
+    ALE置0：数据
+
+  - **M/IO**置1：地址信号
+
+    M/IO置0：端口号（8088相反）
+
+  - **BHE**：**bus high enable** pin，设置高字节是否有效
+
+  -  **RD**/**WR**：读写信号，低电平有效（低电平更稳定）
+
+  -  **INTR**：中断请求（要看FLAG再进中断）
+
+     **INTA**：响应INTR
+
+  - **NMI**：不可屏蔽中断
+
+  -  **LOCK**：锁定系统上的外设
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115182528658.png" alt="image-20240115182528658" style="zoom:50%;" /> 
+
+- 8088：16-bit microprocessor ；8-bit  data bus （AD0 –AD7）
+
+- DRAM：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115183706248.png" alt="image-20240115183706248" style="zoom:50%;" /> 
+
+- **Memory Bank**：8086可以以字节粒度访问是由于Bank的组织方式按字节
+
+  同时访问两个Bank表示双字节访问；一个Bank就是单字节
+
+  A0判断偶Bank是否有效；BHE判断奇Bank是否有效
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115184117675.png" alt="image-20240115184117675" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115184456403.png" alt="image-20240115184456403" style="zoom:50%;" /> 
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115184640924.png" alt="image-20240115184640924" style="zoom:50%;" /> 
+
+  非对齐内存访问：两个周期分别写（效率下降）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115185709199.png" alt="image-20240115185709199" style="zoom:50%;" /> 
+
+
+
+# 第九章 接口
+
+硬件接口是指不同设备的连接和通信
+
+要处理：内外速度不同（缓存）；信号规则不同；功率驱动不同
+
+- 分类：
+
+  Directions of information flow
+
+  – Input interface
+
+  – Output interface
+
+  Types of signal
+
+  – Analog interface
+
+  – Digital interface
+
+  Types of data transmission
+
+  – Serial interface
+
+  – Parallel interface
+
+- 接口内容：
+
+  - Data Bus Buffer（存数据）
+  - chip select（选择使能用到的chip）
+  - Control and Status register（控制接口，返回状态给CPU）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115210114246.png" alt="image-20240115210114246" style="zoom:50%;" /> 
+
+- How to connect I/O devices with CPU？
+
+  – Latches for output interface（输出时放到锁存器然后去做其他事）
+
+  – Three state buffers for input interface（通过三态门做总线的隔离）
+
+  Several solutions:
+
+  - unconditional transfer for always-on devices（对于没有时序的外设比如开关）
+  - strobing 
+  - handshaking and polling
+  - interrupt-driven I/O
+  - channel-based I/O (e.g., DMA)
+
+- How to provide address space for I/O devices?
+
+  – Two schemes: **Isolated** I/O or **Memory mapped** I/O.
+
+  -  Isolated I/O：外设端口独立编址
+
+    好处：端口是独立的
+
+    坏处：需要额外空间，以及额外的控制信号
+
+  - Memory mapped I/O
+
+    好处：任何内存传输指令都可以访问I/O设备
+
+    坏处：消耗内存空间
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115212313792.png" alt="image-20240115212313792" style="zoom:50%;" /> 
+
+- How to perform I/O port decoding?
+
+  – Signal involved: memory address, #BHE and #BLE, \#IORC and #IOWC
+
+
+
+- **TTL Signal**：
+
+  输入输出电平标准不同（外部的电平可能受干扰大）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115212559268.png" alt="image-20240115212559268" style="zoom:50%;" />  
+
+  要求：
+
+  –输入设备在连接到微处理器时应**兼容**TTL
+
+  –噪声应减少或从输入设备上去除
+
+  - 减少方法（减少抖动）：
+
+    – double-throw switch with flip-flop（会保持信号）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115213256785.png" alt="image-20240115213256785" style="zoom:50%;" /> 
+
+    – double-throw switch with NOT gates（不会状态翻转，会进入高组态）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115213309831.png" alt="image-20240115213309831" style="zoom:50%;" /> 
+
+    – low-pass filter and schmitt trigger
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115213445835.png" alt="image-20240115213445835" style="zoom:50%;" /> 
+
+    – multiple stages shift register sampling（三次采样如果发生震荡，上下结果不一样，触发器不置位）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115213512118.png" alt="image-20240115213512118" style="zoom:50%;" /> 
+
+    – software sampling
+
+- 输出设备的接口电路
+
+  - 需要放大电流驱动输出设备（用三极管联级）
+  - 连接转动线圈可能因为电流突然截止产生反向电动势击穿线圈（接带二极管的稳压电路）
+
+- **Basic Input and Output Interfaces** 
+
+  - 基本输入设备是一组连接到数据总线的**三状态缓冲器**
+
+    **IN**指令会使能SEL激活三态门
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115223354119.png" alt="image-20240115223354119" style="zoom: 50%;" /> 
+
+  - 基本输出设备是一组从数据总线存储值的数据**锁存器**
+
+    **OUT**指令提供锁存器的采样信号
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115223612304.png" alt="image-20240115223612304" style="zoom:50%;" /> 
+
+- **Asynchronous Data Transfer** ：
+
+  - strobing (one control signal)：选通信号
+
+    缺点：信号时间长度不确定（选择最长采样时间的设备会降低效率）
+
+    两种方式：
+
+    – source-initiated transfer：源启动数据选通信号，持续一定时间（目的端在这段时间内采样）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115224049339.png" alt="image-20240115224049339" style="zoom:50%;" /> 
+
+    – destination-initiated transfer：目的端向源传递选通信号，源收到后开始传输数据
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115224151514.png" alt="image-20240115224151514" style="zoom:50%;" /> 
+
+  - **handshaking method**：
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115224442012.png" alt="image-20240115224442012" style="zoom: 50%;" /> 
+
+
+
+## 9.2 地址译码
+
+主要过程：高5位激活译码器，低三位选择通道；需要控制信号WR（out指令）和IO/M信号；把数据传到锁存器
+
+<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115224702276.png" alt="image-20240115224702276" style="zoom:50%;" /> 
+
+- **Decoding 8-Bit I/O Port Addresses**：
+
+  高5位激活译码器，低三位选择通道
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115231647758.png" alt="image-20240115231647758" style="zoom:50%;" /> 
+
+- **Decoding 16-Bit I/O Port Addresses** ：
+
+  部分位做控制信号
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115231728805.png" alt="image-20240115231728805" style="zoom:50%;" /> 
+
+- **8- and 16-Bit Wide I/O Ports** ：
+
+  非对齐访问：requires separate write strobes (BHE and BLE)
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115231902430.png" alt="image-20240115231902430" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115232038751.png" alt="image-20240115232038751" style="zoom:50%;" /> 
+
+- **16-bit-wide port**不需要A0、Bank控制信号；**32-bit-wide port**不需要A0、A1
+
+
+
+## 9.3 可编程芯片
+
+### 9.3.1 82C55
+
+- 82C55（C表示低功耗版本）：与TTL兼容
+
+  CS：片选信号（地址的高位做）
+
+  A0/A1：选择端口（PA、PB、PC、命令寄存器）
+
+  D0~D7：数据接口
+
+  PA、PB：纯数据；PC：可以做控制信号
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115233022940.png" alt="image-20240115233022940" style="zoom:50%;" /> 
+
+  60H–63H：controlling **keyboard**, **timer** or speaker  
+
+  378H–37BH： for the **parallel printer**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115234145594.png" alt="image-20240115234145594" style="zoom:50%;" /> 
+
+  - Port A, B, C
+
+    – Port A: one 8-bit data output latch and one data input latch
+
+    – Port B: one 8-bit data input/output latch and data input buffer
+
+    – Port C: one 8-bit data output latch and one data input buffer
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240115234653489.png" alt="image-20240115234653489" style="zoom:50%;" /> 
+
+  - Group A and Group B
+
+    – Group A: Port **A** and high order 4 bits of port C (**PC7~PC4**)
+
+    – Group B: Port **B** and low order 4 bits of port C (**PC3~PC0**)
+
+  - Mode 0, 1, 2 
+
+    – Mode 0: **Basic** input/output operation (for group A and B)，不握手、选通等
+
+    – Mode 1: **Strobe** input/output operation (for group A and B)，选通、握手（C端口分别提供4个控制信号）
+
+    A端口读的流程：STB握手信号传给PC4→PC5回复信号给IBF表示把数据锁存了→PC3向CPU发送中断信号INTR→CPU响应后发出RD读信号开始读（为什么用PC3？ 因为组A还有模式2需要两组握手信号）
+
+    **INTR**：置位条件;INTE is a “1”, STB is a “1” and IBF is a “1”.(读完了)
+
+    **INTE**：写PC4 (port A) or PC2 (port B)（读数据）；PC6 (port A) or PC2 (port B)（写数据）
+
+    **PC7, PC6**读的时候没有用；**PC5, PC4**写的时候没有用
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116003032892.png" alt="image-20240116003032892" style="zoom:50%;" /> <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116004751685.png" alt="image-20240116004751685" style="zoom:50%;" /> 
+
+    不向CPU发中断的方式：轮询查看C的状态（看IBF/OBF是否为1，此时没有中断所以其他位没什么用）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116004458264.png" alt="image-20240116004458264" style="zoom:50%;" /> 
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116005350131.png" alt="image-20240116005350131" style="zoom:50%;" /> 
+
+    – Mode 2: **Bidirectional bus** operation (for group **A only**)，双向信息交互（A需要C的更多控制信号至少5，所以B无法工作）
+
+    端口是输入输出握手的结合；Port A和Port C 3~7（控制字4、3）不用设输入还是输出
+
+    如何区分中断INTR是输入还是输出：CPU接到中断时必须做**Port C查询**（PC7和PC5）
+    
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116105836046.png" alt="image-20240116105836046" style="zoom:50%;" /> 
+    
+    **Single** bit set/reset for port C (in mode **1 and 2**)，部分引脚被A或B占用 
+
+- **Programming the 82C55** 
+
+  command byte A：programs functions of group **A and B**
+
+  最高位为1 + **两位**mode（A）+ Port A + Port C（4~7）+  **一位**mode（B）+ Port B +  Port C（0~3）
+
+  command byte B： **sets (1) or resets (0)** bits of port **C** only if the 82C55 is programmed in **mode 1 or 2**
+
+  最高位为0 + 3位空 + 三位选择bit + 一位sets (1) or resets (0)
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116000125935.png" alt="image-20240116000125935" style="zoom:50%;" /> 
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116001028013.png" alt="image-20240116001028013" style="zoom:50%;" /> 
+  
+- **Combinations of Mode 1**：Port A 和 Port B分别工作
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116105346925.png" alt="image-20240116105346925" style="zoom:50%;" />  
+
+  满负荷：A在mode 2，B在mode 1
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116110909562.png" alt="image-20240116110909562" style="zoom:50%;" /> 
+
+
+
+### 9.3.2 8254
+
+- **8254**简介：可编程计时器（三个独立的16位可编程计数器）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116111153322.png" alt="image-20240116111153322" style="zoom:50%;" /> 
+
+- 六种模式：
+
+  – Three independent 16-bit counters
+
+  – Binary or BCD counting
+
+  – Six programmable counter modes
+
+  – Counter latch command
+
+  – Multiple latch command for easy monitoring
+
+  – Handles inputs from DC to 10 MHz
+
+- 每个定时器有三个引脚:
+
+  - **clk**时钟输入：提供真正的时钟频率
+  - **GATE**门控输入：控制定时器的时钟block或复位
+  - **OUT**输出
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116111750829.png" alt="image-20240116111750829" style="zoom:50%;" /> <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116111920315.png" alt="image-20240116111920315" style="zoom:50%;" /> 
+
+- 内部结构：共用一个控制字寄存器，其他各有一个；两个初始计数寄存器（内部数据是16位的，外部输出是8位的）和锁存寄存器（写两次）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116112324451.png" alt="image-20240116112324451" style="zoom:50%;" /> 
+
+- 控制字：先写控制字，再写初始值
+
+  - SC1、SC0：选择计数器（11表示回读计数器）
+  - RW1、RW2：01表示低八位；10表示高八位；11表示16位（先写低位）；00表示锁存当前计数来读
+  - M：三种工作模式
+  - BCD：0表示二进制；1表示BCD
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116112908165.png" alt="image-20240116112908165" style="zoom:50%;" /> 
+
+- 计数范围：
+
+  最大初始计数是0
+
+  二进制计数范围$2^{16}$; BCD计数$10^4$
+
+  最小初始计数：
+
+  - 模式0,1,4,5：1
+
+  - 模式2,3：2（周期计数）
+
+  一个新的初始计数可以在**任何时候**被写入一个计数器
+
+  一个计数器设置16位初始值时不能被打断（初始化低8位后只能继续初始化高8位，不能对该计数器做其他操作）
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116114258176.png" alt="image-20240116114258176" style="zoom:50%;" /> 
+
+- mode1、2：计数时低电平，结束高电平（INTR高电平有效）；mode2、3、4、5：相反
+
+  mode2、3：周期计数；mode 1、0、1、4、5不是
+
+  mode1、5：硬件触发周期计数；mode 0、4软件触发(重新写计数初值)
+
+  共性问题：
+
+  - 当一个控制字被写入一个计数器时**OUT** goes to a known initial state.
+  - 在CLK的**下降沿**加载新的计数，计数器减少
+  - 对于模式0-4，在CLK的上升沿采样，以启用计数。对于模式5，计数由GATE输入的上升沿触发
+  - 计数器在达到零时不会停止（ Modes 0, 1, 4, and 5 the counter ‘‘wraps around’’ to the **highest count (**FFFF or 9999)；Modes 2 and 3 **reload**s itself with the initial count and continues counting from there）
+
+  – Mode 0: interrupt at the end of count
+
+  - 当控制字被写入时，**OUT**置0，保持到计数结束
+  - 门(G)输入必须**保持**逻辑1，以允许计数器计数
+  - 如果G在计数的中间成为逻辑0，计数器将停止，直到G再次成为逻辑1（在断点处继续计数）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116120542055.png" alt="image-20240116120542055" style="zoom:50%;" />   
+
+  计数结束时重新装载：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116120827549.png" alt="image-20240116120827549" style="zoom:50%;" /> 
+
+  – Mode 1: hardware **retriggerable** one-shot
+
+  - 在时钟上升沿再次采样到1次GATE为高电平就重复计数
+  - GATE不用一直保持高电平
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116121210309.png" alt="image-20240116121210309" style="zoom:50%;" /> 
+
+  – Mode 2: rate generator (**periodic)**
+
+  - OUT 在计数时是1（和前面反的）
+
+  - **rate generator**
+
+  - GATE =1启用计数。如果期间GATE变低，OUT立即设置为高，下一个CLK的初始计数**重新加载**计数器
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116121647784.png" alt="image-20240116121647784" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116121830216.png" alt="image-20240116121830216" style="zoom:50%;" /> 
+
+  重新加载计算器：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116122008500.png" alt="image-20240116122008500" style="zoom:50%;" /> 
+
+  – Mode 3: square wave generator (**periodic**)
+
+  - 方波<img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116122137209.png" alt="image-20240116122137209" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116122232927.png" alt="image-20240116122232927" style="zoom:50%;" /> 
+
+  – Mode 4: software-triggered strobe
+
+  – Mode 5: hardware-triggered strobe (**retriggerable**)
+
+  - 计数是由门的上升沿触发的（任何时间）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116122555352.png" alt="image-20240116122555352" style="zoom:50%;" /> 
+
+- **Reading a Counter**：
+
+  – a simple read operation（不锁存，不稳定、先低后高）
+
+  – the counter latch command（读一个）
+
+  D5、D4设0；D7、D6为选择的计数器（11是下一种方式）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116124249497.png" alt="image-20240116124249497" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116124517807.png" alt="image-20240116124517807" style="zoom:50%;" /> 
+
+  – the read-back command （读多个、更多信息）
+
+  D5：是否要读计数的值
+
+  D4：是否读计数器状态
+
+  D3、D2、D1：三个计数器选择
+
+  D0：保留值，必须为0
+
+  如果D5D4都有效，**先读状态再读计数**
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116124543945.png" alt="image-20240116124543945" style="zoom:50%;" /> 
+
+
+
+### 9.3.3 16550
+
+- **Three Modes of Transmission**：单工、半双工、双工
+-  two clock timing solutions: synchronous（相同时钟global clock /phase-locked loop） and asynchronous（同步信号、不准确）
+
+- **UART（异步） and USART（同步或异步）**：将并行数据转为串行数据
+
+- **Baud Rate Divisor**：接受的频率通常更高
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116130816945.png" alt="image-20240116130816945" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116130921124.png" alt="image-20240116130921124" style="zoom:50%;" /> 
+
+- 16550简介：串行通信
+
+  - A start bit, always ‘0’
+  - 5 to 8 bits of data（由低到高）
+  - A parity bit 
+  -  1 or more stop bits 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116135505001.png" alt="image-20240116135505001" style="zoom:50%;" /> 
+
+  Baud Rate Divisor = **16**
+
+  - DMA信号：发出中断
+
+  - 读写信号两组：兼容不同芯片
+  - **ADS**：锁存地址和片选（Intel不用）
+  - **XIN, XOUT** ：外部时钟
+  - **SIN, SOUT** ：输入输出串行数据
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116135659717.png" alt="image-20240116135659717" style="zoom:50%;" /> 
+
+  A0、A1、A2：选择端口（复用选择10个寄存器，拼一个内部寄存器DLAB的扩展位选择12个寄存器）
+
+  复用原因：读写分离；时序分离
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116140451476.png" alt="image-20240116140451476" style="zoom:50%;" />  
+
+- 两阶段编程：
+
+  - 初始化（使能）：产生正确的波特率时钟→设置数据参数（stop, data, and parity bits, etc）
+  - **Clear** the transmitter & receiver FIFOs
+
+- 控制字：
+
+  - L1、L2：有效数据多少位（5~8）
+  - S：0表示结束位是1位；1表示结束位是1.5（data=5位，拉长结束位到1.5个时钟）或2位（data>5位）
+  - PE：奇偶校验使能
+  - P：0是奇校验；1是偶校验
+  - ST：固定校验位（就是数据变化时不影响校验位）
+  - SB：causes a break（2帧）
+  - DL：使能DLAB分频
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116141625989.png" alt="image-20240116141625989" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116142234869.png" alt="image-20240116142234869" style="zoom:50%;" /> 
+
+  EX：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116142437622.png" alt="image-20240116142437622" style="zoom:50%;" /> 
+
+- FIFO控制寄存器仍必须在端口**010**处进行编程：低三位全1
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116142805648.png" alt="image-20240116142805648" style="zoom:50%;" /> 
+
+- 初始化流程：
+
+  - 访问端口011对线路控制器最高位设1
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116143632337.png" alt="image-20240116143632337" style="zoom:50%;" /> 
+
+  - 可以通过000、001设置分频系数的低位和高位
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116143649014.png" alt="image-20240116143649014" style="zoom:50%;" /> 
+
+  - 设置实际数据格式
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116143704899.png" alt="image-20240116143704899" style="zoom:50%;" /> 
+
+  - 使能FIFO（低三位）
+
+    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116143718242.png" alt="image-20240116143718242" style="zoom:50%;" /> 
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116142926118.png" alt="image-20240116142926118" style="zoom:50%;" /> 
+
+- **Sending Serial Data**：检测状态寄存器看上一次数据是否发送完
+
+  - 0**DR**：设0表示目前没有接受到数据
+  - 3~1：校验的错误
+  - 4：是否收到break
+  - 5**TH**：目前能不能发送数据（0表示上一次还没有发送完，1说明可以写，已经空了）
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116144008920.png" alt="image-20240116144008920" style="zoom:50%;" /> 
+
+  检测代码：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116144409235.png" alt="image-20240116144409235" style="zoom:50%;" /> 
+
+- **Receiving Serial Data Example**：检测3个错误
+
+  检测代码：
+
+  <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240116144714391.png" alt="image-20240116144714391" style="zoom:50%;" /> 
